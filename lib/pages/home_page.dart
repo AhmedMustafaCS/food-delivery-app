@@ -19,22 +19,76 @@ class HomePage extends StatelessWidget {
               child: const Text('I am in the drawer!'),
             ),
             backgroundColor: Colors.white),
-        body:Padding(
+        body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children:[
-              ClipRRect(
-                borderRadius:BorderRadius.circular(24),
-                child: Image.asset('assets/images/classic_burger.jpg',
-                height:200,
-                fit:BoxFit.cover,
-                
-                
+          child: Column(children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(24),
+              child: Image.asset(
+                'assets/images/classic_burger.jpg',
+                height: 200,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(height:32),
+            Expanded(
+              child: GridView(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing:20 ,
+                  crossAxisSpacing: 20,
                 ),
-              )
-            ]
-          ),
-        )
-        );
+                children:[
+                  Container(
+                    decoration:BoxDecoration(
+                      color:Colors.grey,
+                    ),
+                    child:Column(
+                      children:[
+                        Placeholder(
+                          fallbackHeight: 100,
+                        ),
+                        Text('Burger'),
+                        Text('25\$'),
+
+                      ]
+                      ),
+                  ),
+                  Container(
+                    decoration:BoxDecoration(
+                      color:Colors.grey,
+                    ),
+                    child:Column(
+                      children:[
+                        Placeholder(
+                          fallbackHeight:100,
+                        ),
+                        Text('Burger'),
+                        Text('25\$'),
+
+                      ]
+                      ),
+                  ),
+                  Container(
+                    decoration:BoxDecoration(
+                      color:Colors.grey,
+                    ),
+                    child:Column(
+                      children:[
+                        Placeholder(
+                          fallbackHeight: 100,
+                        ),
+                        Text('Burger'),
+                        Text('25\$'),
+
+                      ]
+                      ),
+                  ),
+                 
+                ]
+              ),
+            )
+          ]),
+        ));
   }
 }
