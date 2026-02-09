@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_item.dart';
+import 'package:food_delivery/widgets/food_grid_item.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,10 +17,10 @@ class HomePage extends StatelessWidget {
           centerTitle: true,
         ),
         drawer: const Drawer(
+            backgroundColor: Colors.white,
             child: Center(
-              child: const Text('I am in the drawer!'),
-            ),
-            backgroundColor: Colors.white),
+              child:  Text('I am in the drawer!'),
+            )),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(children: [
@@ -35,41 +36,12 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: GridView.builder(
                 itemCount: food.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 20,
                   crossAxisSpacing: 20,
                 ),
-                itemBuilder: (context, index) => Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(children: [
-                      Image.network(food[index].imgUrl, height: 100, 
-                      fit: BoxFit.cover
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Text(food[index].name,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                          )),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text('\$ ${food[index].price} ',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.deepOrange,
-                          )),
-                    ]),
-                  ),
-                ),
+                itemBuilder: (context, index) => FoodGridItem(foodItem: food[index]),
               ),
             )
           ]),
