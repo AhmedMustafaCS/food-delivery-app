@@ -21,7 +21,7 @@ class FoodGridItem extends StatelessWidget {
           ),
           Text(foodItem.name,
               style: const TextStyle(
-                fontSize: 15,
+                fontSize: 15.7,
                 fontWeight: FontWeight.w600,
               ),
               ),
@@ -30,7 +30,7 @@ class FoodGridItem extends StatelessWidget {
           ),
           Text('\$ ${foodItem.price} ',
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: 14.3,
                 fontWeight: FontWeight.bold,
                 color: Colors.deepOrange,
               ),

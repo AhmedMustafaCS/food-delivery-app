@@ -10,18 +10,20 @@ class HomePage extends StatelessWidget {
     final size =MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(24),
-          child: Image.asset(
-            'assets/images/classic_burger.jpg',
-            height: size.height*0.23,
-            fit: BoxFit.cover,
+      child: SingleChildScrollView(
+        child: Column(children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(24),
+            child: Image.asset(
+              'assets/images/classic_burger.jpg',
+              height: size.height*0.23,
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-         SizedBox(height: size.height*0.03),
-        Expanded(
-          child: GridView.builder(
+           SizedBox(height: size.height*0.03),
+          GridView.builder(
+            shrinkWrap:true,
+            physics:const NeverScrollableScrollPhysics(),
             itemCount: food.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
@@ -29,9 +31,9 @@ class HomePage extends StatelessWidget {
               crossAxisSpacing: 20,
             ),
             itemBuilder: (context, index) => FoodGridItem(foodItem: food[index]),
-          ),
-        )
-      ]),
+          )
+        ]),
+      ),
     );
   }
 }
