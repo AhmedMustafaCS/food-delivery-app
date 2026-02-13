@@ -38,8 +38,8 @@ class _FoodGridItemState extends State<FoodGridItem> {
                   ),
                   child: InkWell(
                     onTap: () => setState(() {
+                      widget.foodItem.copyWith(isFavorite:true);
                       isFav = !isFav;
-                      
                     }),
                     child: Icon(
                       isFav ? Icons.favorite : Icons.favorite_border,
