@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 
-class AccountPage extends StatelessWidget {
+class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
-  Widget orderVoucherItem({required String name, required int number}) {
+
+  @override
+  State<AccountPage> createState() => _AccountPageState();
+}
+
+class _AccountPageState extends State<AccountPage> {
+  Widget orderVoucherItem(BuildContext context, {required String name, required int number}) {
     return Column(
       children: [
         Text(
           number.toString(),
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.w600,
-            color: Colors.deepOrange,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         Text(
@@ -23,15 +29,15 @@ class AccountPage extends StatelessWidget {
     );
   }
 
-  Widget itemTappedTile({required String title, String? subtitle, required IconData icon}) {
+  Widget itemTappedTile(BuildContext context, {required String title, String? subtitle, required IconData icon}) {
     return ListTile(
       title: Text(title),
-      leading: Icon(icon, size: 35, color: Colors.deepOrange),
+      leading: Icon(icon, size: 35, color: Theme.of(context).primaryColor),
       onTap: () => debugPrint('$title clicked!'),
       subtitle: subtitle != null ? Text(subtitle) : null,
-      trailing: const Icon(
+      trailing: Icon(
         Icons.chevron_right,
-        color: Colors.deepOrange,
+        color: Theme.of(context).primaryColor,
         size: 25,
       ),
     );
@@ -66,8 +72,8 @@ class AccountPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              orderVoucherItem(name: 'Orders', number: 50),
-              orderVoucherItem(name: 'Vouchers', number: 10),
+              orderVoucherItem(context, name: 'Orders', number: 50),
+              orderVoucherItem(context, name: 'Vouchers', number: 10),
             ],
           ),
           const SizedBox(height: 24.0),
@@ -77,6 +83,7 @@ class AccountPage extends StatelessWidget {
             endIndent: 20,
           ),
           itemTappedTile(
+            context,
             title: 'Past Orders',
             icon: Icons.shopping_cart,
           ),
@@ -86,6 +93,7 @@ class AccountPage extends StatelessWidget {
             endIndent: 20,
           ),
           itemTappedTile(
+            context,
             title: 'Available Vouchers',
             icon: Icons.card_giftcard,
           ),

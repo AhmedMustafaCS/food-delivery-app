@@ -49,7 +49,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
         ],
         currentIndex: selectedIndex,
-        selectedItemColor: Colors.deepOrange,
+       // selectedItemColor: Colors.deepOrange,
         onTap: onItemTapped,
       ),
     );
