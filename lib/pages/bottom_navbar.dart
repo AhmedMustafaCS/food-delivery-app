@@ -13,9 +13,11 @@ class BottomNavBarPage extends StatefulWidget {
 class _BottomNavBarPageState extends State<BottomNavBarPage> {
   int selectedIndex = 0;
   void onItemTapped(int newIndex) {
-    setState(() {
-      selectedIndex = newIndex;
-    });
+    setState(
+      () {
+        selectedIndex = newIndex;
+      },
+    );
   }
 
   List<Widget> bodyOptions = const [
@@ -27,13 +29,8 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text('Foodak'),
-        backgroundColor: Colors.grey[100],
-        foregroundColor: Colors.black,
-        elevation: 0,
-        centerTitle: true,
       ),
       body: bodyOptions[selectedIndex],
       drawer: const Drawer(
@@ -49,7 +46,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
         ],
         currentIndex: selectedIndex,
-       // selectedItemColor: Colors.deepOrange,
+        // selectedItemColor: Colors.deepOrange,
         onTap: onItemTapped,
       ),
     );

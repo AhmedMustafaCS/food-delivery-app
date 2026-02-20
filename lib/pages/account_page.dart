@@ -32,12 +32,14 @@ class _AccountPageState extends State<AccountPage> {
   Widget itemTappedTile(BuildContext context, {required String title, String? subtitle, required IconData icon}) {
     return ListTile(
       title: Text(title),
-      leading: Icon(icon, size: 35, color: Theme.of(context).primaryColor),
+      leading: Icon(
+        icon,
+        size: 35,
+      ),
       onTap: () => debugPrint('$title clicked!'),
       subtitle: subtitle != null ? Text(subtitle) : null,
-      trailing: Icon(
+      trailing: const Icon(
         Icons.chevron_right,
-        color: Theme.of(context).primaryColor,
         size: 25,
       ),
     );
@@ -77,31 +79,19 @@ class _AccountPageState extends State<AccountPage> {
             ],
           ),
           const SizedBox(height: 24.0),
-          const Divider(
-            thickness: 2,
-            indent: 20,
-            endIndent: 20,
-          ),
+          const Divider(),
           itemTappedTile(
             context,
             title: 'Past Orders',
             icon: Icons.shopping_cart,
           ),
-          const Divider(
-            thickness: 2,
-            indent: 20,
-            endIndent: 20,
-          ),
+          const Divider(),
           itemTappedTile(
             context,
             title: 'Available Vouchers',
             icon: Icons.card_giftcard,
           ),
-          const Divider(
-            thickness: 2,
-            indent: 20,
-            endIndent: 20,
-          ),
+          const Divider(),
         ],
       ),
     );
