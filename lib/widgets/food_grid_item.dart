@@ -19,57 +19,54 @@ class _FoodGridItemState extends State<FoodGridItem> {
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(children: [
-          Stack(
-            children: [
-              Image.network(
-                food[widget.foodIndex].imgUrl,
-                height: 100,
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: Container(
-                  height: 27,
-                  width: 27,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[100],
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: InkWell(
-                    onTap: () => setState(() {
-                     food[widget.foodIndex]= food[widget.foodIndex].copyWith(isFavorite:!food[widget.foodIndex].isFavorite);
-                    }),
-                    child: Icon(
-                      food[widget.foodIndex].isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: Theme.of(context).primaryColor,
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                Image.network(
+                  food[widget.foodIndex].imgUrl,
+                  height: 93.5,
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    height: 27,
+                    width: 27,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: InkWell(
+                      onTap: () => setState(
+                        () {
+                          food[widget.foodIndex] = food[widget.foodIndex].copyWith(isFavorite: !food[widget.foodIndex].isFavorite);
+                        },
+                      ),
+                      child: Icon(
+                        food[widget.foodIndex].isFavorite ? Icons.favorite : Icons.favorite_border,
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Text(
-            food[widget.foodIndex].name,
-            style: const TextStyle(
-              fontSize: 15.7,
-              fontWeight: FontWeight.w600,
+              ],
             ),
-          ),
-          const SizedBox(
-            height: 4,
-          ),
-          Text(
-            '\$ ${food[widget.foodIndex].price} ',
-            style:  TextStyle(
-              fontSize: 14.3,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).primaryColor,
+            const SizedBox(
+              height: 8,
             ),
-          ),
-        ]),
+            Text(
+              food[widget.foodIndex].name,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(
+              height: 4,
+            ),
+            Text(
+              '\$ ${food[widget.foodIndex].price} ',
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Theme.of(context).primaryColor),
+            ),
+          ],
+        ),
       ),
     );
   }

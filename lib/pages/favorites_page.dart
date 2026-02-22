@@ -14,13 +14,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
     final favoriteFood = food.where((foodItem) => foodItem.isFavorite == true).toList();
     if (favoriteFood.isEmpty) {
       return Center(
-        child: Column(children: [
-          Image.asset('assets/images/empty_state.png', fit: BoxFit.cover, height: 350),
-          const Text(
-            'No Favorite Items Found!',
-            style: TextStyle(fontSize: 22),
-          ),
-        ]),
+        child: Column(
+          children: [
+            Image.asset('assets/images/empty_state.png', fit: BoxFit.cover, height: 350),
+            Text('No Favorite Items Found!', style: Theme.of(context).textTheme.headlineSmall),
+          ],
+        ),
       );
     }
     return Padding(
@@ -49,16 +48,15 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     children: [
                       Text(
                         favoriteFood[index].name,
-                        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                       const SizedBox(height: 8.0),
                       Text(
                         '\$ ${favoriteFood[index].price}',
-                        style:  TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).primaryColor,
-                        ),
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: Theme.of(context).primaryColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                     ],
                   ),
@@ -72,9 +70,9 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       favoriteFood.remove(targetedItem);
                     });
                   },
-                  icon:  Icon(
+                  icon: Icon(
                     Icons.favorite,
-                    color:Theme.of(context).primaryColor,
+                    color: Theme.of(context).primaryColor,
                     size: 30,
                   ),
                 )

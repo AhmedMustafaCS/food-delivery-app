@@ -13,18 +13,14 @@ class _AccountPageState extends State<AccountPage> {
       children: [
         Text(
           number.toString(),
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.w600,
-            color: Theme.of(context).primaryColor,
-          ),
+          style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                color: Theme.of(context).primaryColor,
+              ),
         ),
         Text(
           name,
-          style: const TextStyle(
-            fontSize: 18,
-          ),
-        )
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
       ],
     );
   }
@@ -63,12 +59,11 @@ class _AccountPageState extends State<AccountPage> {
             ),
           ),
           const SizedBox(height: 16.0),
-          const Text(
+          Text(
             'Ahmed Mustafa',
-            style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.w600,
-            ),
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
           ),
           const SizedBox(height: 16.0),
           Row(
