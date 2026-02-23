@@ -29,10 +29,10 @@ class MyApp extends StatelessWidget {
           indent: 20,
           endIndent: 20,
         ),
-        listTileTheme:const ListTileThemeData(
+        listTileTheme: const ListTileThemeData(
           iconColor: Colors.deepOrange,
         ),
-        
+        fontFamily: 'OpenSans',
       ),
       home: const BottomNavBarPage(),
     );

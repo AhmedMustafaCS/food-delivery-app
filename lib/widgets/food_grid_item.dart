@@ -12,6 +12,7 @@ class FoodGridItem extends StatefulWidget {
 class _FoodGridItemState extends State<FoodGridItem> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.0),
@@ -22,10 +23,11 @@ class _FoodGridItemState extends State<FoodGridItem> {
         child: Column(
           children: [
             Stack(
+              alignment: Alignment.topCenter,
               children: [
                 Image.network(
                   food[widget.foodIndex].imgUrl,
-                  height: 93.5,
+                  height: size.height * 0.092,
                 ),
                 Align(
                   alignment: Alignment.topRight,
@@ -54,10 +56,7 @@ class _FoodGridItemState extends State<FoodGridItem> {
             const SizedBox(
               height: 8,
             ),
-            Text(
-              food[widget.foodIndex].name,
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+            Text(food[widget.foodIndex].name, style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(
               height: 4,
             ),
