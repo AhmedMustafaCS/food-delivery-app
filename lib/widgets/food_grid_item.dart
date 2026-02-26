@@ -19,7 +19,7 @@ class _FoodGridItemState extends State<FoodGridItem> {
         color: Colors.white,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(13),
         child: Column(
           children: [
             Stack(
@@ -62,7 +62,7 @@ class _FoodGridItemState extends State<FoodGridItem> {
             ),
             Text(
               '\$ ${food[widget.foodIndex].price} ',
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Theme.of(context).primaryColor),
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).primaryColor),
             ),
           ],
         ),

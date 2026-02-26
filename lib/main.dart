@@ -15,8 +15,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Foodak - Food Delivery',
       theme: ThemeData(
-        useMaterial3: false,
-        primarySwatch: Colors.deepOrange,
+        useMaterial3: true,
+        //primarySwatch: Colors.deepOrange,
+        // colorSchemeSeed:Colors.deepOrange,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.deepOrange,
+        ),
         scaffoldBackgroundColor: Colors.grey[100],
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.grey[100],
@@ -24,11 +28,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
           centerTitle: true,
         ),
-        dividerTheme: const DividerThemeData(
-          thickness: 2,
-          indent: 20,
-          endIndent: 20,
-        ),
+        dividerTheme: const DividerThemeData(thickness: 2, indent: 20, endIndent: 20, color: Colors.black12),
         listTileTheme: const ListTileThemeData(
           iconColor: Colors.deepOrange,
         ),
