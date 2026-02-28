@@ -26,28 +26,30 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   Widget itemTappedTile(BuildContext context, {required String title, String? subtitle, required IconData icon}) {
+    final size = MediaQuery.of(context).size;
     return ListTile(
       title: Text(title),
       leading: Icon(
         icon,
-        size: 35,
+        size: size.height * 0.033,
       ),
       onTap: () => debugPrint('$title clicked!'),
       subtitle: subtitle != null ? Text(subtitle) : null,
-      trailing: const Icon(
+      trailing: Icon(
         Icons.chevron_right,
-        size: 25,
+        size: size.height * 0.03,
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Center(
       child: Column(
         children: [
           Container(
-            height: 250,
+            height: size.height*0.25,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
