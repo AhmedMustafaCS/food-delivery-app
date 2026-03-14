@@ -17,8 +17,14 @@ class _FavoritesPageState extends State<FavoritesPage> {
       return Center(
         child: Column(
           children: [
-            Image.asset('assets/images/empty_state.png', fit: BoxFit.cover, height: size.height*0.4,),
-            Text('No Favorite Items Found!', style: Theme.of(context).textTheme.headlineSmall),
+            Image.asset(
+              'assets/images/empty_state.png',
+              fit: BoxFit.cover,
+              height: size.height * 0.4,
+            ),
+            FittedBox(
+              child: Text('No Favorite Items Found!', style: Theme.of(context).textTheme.headlineSmall),
+            ),
           ],
         ),
       );
@@ -37,8 +43,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
               children: [
                 Image.network(
                   favoriteFood[index].imgUrl,
-                  height: size.height*0.091,
-                  width:size.width*0.27,
+                  height: size.height * 0.091,
+                  width: size.width * 0.27,
                   fit: BoxFit.cover,
                 ),
                 const SizedBox(
@@ -48,9 +54,11 @@ class _FavoritesPageState extends State<FavoritesPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        favoriteFood[index].name,
-                        style: Theme.of(context).textTheme.titleLarge,
+                      FittedBox(
+                        child: Text(
+                          favoriteFood[index].name,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
                       ),
                       const SizedBox(height: 8.0),
                       Text(
@@ -72,11 +80,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       favoriteFood.remove(targetedItem);
                     });
                   },
-                  icon: Icon(
-                    Icons.favorite,
-                    color: Theme.of(context).primaryColor,
-                    size: size.height*0.035
-                  ),
+                  icon: Icon(Icons.favorite, color: Theme.of(context).primaryColor, size: size.height * 0.035),
                 )
               ],
             ),

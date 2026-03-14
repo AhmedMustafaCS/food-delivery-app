@@ -14,6 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Foodak - Food Delivery',
+      builder: (context, child) {
+        final clampedTextScaler = MediaQuery.textScalerOf(context).clamp(minScaleFactor: 0.9, maxScaleFactor: 1.43);
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaler: clampedTextScaler),
+          child: child!,
+        );
+      },
       theme: ThemeData(
         useMaterial3: true,
         //primarySwatch: Colors.deepOrange,

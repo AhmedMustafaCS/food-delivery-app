@@ -7,7 +7,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery.sizeOf(context);
+    final textScaler = MediaQuery.textScalerOf(context);
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SingleChildScrollView(
@@ -28,8 +29,9 @@ class HomePage extends StatelessWidget {
               itemCount: food.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisSpacing:size.height * 0.015,
+                mainAxisSpacing: size.height * 0.015,
                 crossAxisSpacing: size.height * 0.015,
+                mainAxisExtent: textScaler.clamp(minScaleFactor: 0.96, maxScaleFactor: 1.1).scale(183),
               ),
               itemBuilder: (context, index) => FoodGridItem(foodIndex: index),
             ),

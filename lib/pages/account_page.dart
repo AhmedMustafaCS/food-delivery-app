@@ -26,7 +26,7 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   Widget itemTappedTile(BuildContext context, {required String title, String? subtitle, required IconData icon}) {
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery.sizeOf(context);
     return ListTile(
       title: Text(title),
       leading: Icon(
@@ -44,12 +44,12 @@ class _AccountPageState extends State<AccountPage> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery.sizeOf(context);
     return Center(
       child: Column(
         children: [
           Container(
-            height: size.height*0.25,
+            height: size.height * 0.25,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
