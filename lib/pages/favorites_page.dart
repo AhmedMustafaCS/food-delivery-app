@@ -38,51 +38,56 @@ class _FavoritesPageState extends State<FavoritesPage> {
             borderRadius: BorderRadius.circular(16.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              children: [
-                Image.network(
-                  favoriteFood[index].imgUrl,
-                  height: size.height * 0.091,
-                  width: size.width * 0.27,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(
-                  width: 8.0,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FittedBox(
-                        child: Text(
-                          favoriteFood[index].name,
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                      ),
-                      const SizedBox(height: 8.0),
-                      Text(
-                        '\$ ${favoriteFood[index].price}',
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                              color: Theme.of(context).primaryColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                    ],
+            padding: const EdgeInsets.all(11.0),
+            child: LayoutBuilder(
+              builder: (context, constraints) => Row(
+                children: [
+                  Image.network(
+                    favoriteFood[index].imgUrl,
+                    //  height: constraints.maxWidth * 0.19,
+                    width: constraints.maxWidth * 0.25,
+                    fit: BoxFit.cover,
                   ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    final targetedItem = favoriteFood[index];
-                    int targetedIndex = food.indexOf(targetedItem);
-                    setState(() {
-                      food[targetedIndex] = food[targetedIndex].copyWith(isFavorite: false);
-                      favoriteFood.remove(targetedItem);
-                    });
-                  },
-                  icon: Icon(Icons.favorite, color: Theme.of(context).primaryColor, size: size.height * 0.035),
-                )
-              ],
+                  SizedBox(
+                    width: constraints.maxWidth * 0.05,
+                  ),
+                  SizedBox(
+                    width: constraints.maxWidth * 0.6,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FittedBox(
+                          child: Text(
+                            favoriteFood[index].name,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ),
+                        SizedBox(height: constraints.maxWidth * 0.02),
+                        FittedBox(
+                          child: Text(
+                            '\$ ${favoriteFood[index].price}',
+                            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                  color: Theme.of(context).primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      final targetedItem = favoriteFood[index];
+                      int targetedIndex = food.indexOf(targetedItem);
+                      setState(() {
+                        food[targetedIndex] = food[targetedIndex].copyWith(isFavorite: false);
+                        favoriteFood.remove(targetedItem);
+                      });
+                    },
+                    child: Icon(Icons.favorite, color: Theme.of(context).primaryColor, size: constraints.maxWidth * 0.09),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

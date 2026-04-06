@@ -12,7 +12,7 @@ class FoodGridItem extends StatefulWidget {
 class _FoodGridItemState extends State<FoodGridItem> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+   // final size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.0),
@@ -20,53 +20,63 @@ class _FoodGridItemState extends State<FoodGridItem> {
       ),
       child: Padding(
         padding: const EdgeInsets.all(13),
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                Image.network(
-                  food[widget.foodIndex].imgUrl,
-                  height: size.height * 0.092,
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    height: 27,
-                    width: 27,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[100],
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: InkWell(
-                      onTap: () => setState(
-                        () {
-                          food[widget.foodIndex] = food[widget.foodIndex].copyWith(isFavorite: !food[widget.foodIndex].isFavorite);
-                        },
+        child: LayoutBuilder(
+          builder: (context, constraints) => Column(
+            children: [
+              Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  Image.network(
+                    food[widget.foodIndex].imgUrl,
+                    height: constraints.maxHeight*0.57,
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      height: constraints.maxHeight*0.17,
+                      width: constraints.maxWidth*0.17,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[100],
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
-                      child: Icon(
-                        food[widget.foodIndex].isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: Theme.of(context).primaryColor,
+                      child: InkWell(
+                        onTap: () => setState(
+                          () {
+                            food[widget.foodIndex] = food[widget.foodIndex].copyWith(isFavorite: !food[widget.foodIndex].isFavorite);
+                          },
+                        ),
+                        child: Icon(
+                          food[widget.foodIndex].isFavorite ? Icons.favorite : Icons.favorite_border,
+                          color: Theme.of(context).primaryColor,
+                        ),
                       ),
                     ),
                   ),
+                ],
+              ),
+               SizedBox(
+                height: constraints.maxHeight*0.05,
+              ),
+              SizedBox(
+                height:constraints.maxHeight*0.17,
+                child: FittedBox(
+                  child: Text(food[widget.foodIndex].name, style: Theme.of(context).textTheme.titleLarge),
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            FittedBox(
-              child: Text(food[widget.foodIndex].name, style: Theme.of(context).textTheme.titleLarge),
-            ),
-            const SizedBox(
-              height: 7,
-            ),
-            Text(
-              '\$ ${food[widget.foodIndex].price} ',
-              style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).primaryColor),
-            ),
-          ],
+              ),
+               SizedBox(
+                height: constraints.maxHeight*0.03,
+              ),
+              SizedBox(
+                height:constraints.maxHeight*0.17,
+                child: FittedBox(
+                  child: Text(
+                    '\$ ${food[widget.foodIndex].price} ',
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).primaryColor),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

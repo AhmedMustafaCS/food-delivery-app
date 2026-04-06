@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: size.height * 0.015,
                 crossAxisSpacing: size.height * 0.015,
-                mainAxisExtent: textScaler.clamp(minScaleFactor: 0.96, maxScaleFactor: 1.1).scale(183),
+                mainAxisExtent: textScaler.clamp(minScaleFactor: 0.96, maxScaleFactor: 1.1).scale(size.height*0.2),
               ),
               itemBuilder: (context, index) => FoodGridItem(foodIndex: index),
             ),
