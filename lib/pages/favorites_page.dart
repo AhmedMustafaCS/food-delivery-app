@@ -12,6 +12,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final isLandscape = MediaQuery.orientationOf(context) == Orientation.landscape;
     final favoriteFood = food.where((foodItem) => foodItem.isFavorite == true).toList();
     if (favoriteFood.isEmpty) {
       return Center(
@@ -20,7 +21,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
             Image.asset(
               'assets/images/empty_state.png',
               fit: BoxFit.cover,
-              height: size.height * 0.4,
+              height: isLandscape ? size.height*0.45 : size.height * 0.4,
             ),
             FittedBox(
               child: Text('No Favorite Items Found!', style: Theme.of(context).textTheme.headlineSmall),
