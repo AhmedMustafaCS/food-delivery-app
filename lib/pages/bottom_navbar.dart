@@ -30,6 +30,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 40,
         title: const Text('Foodak'),
       ),
       body: SafeArea(child: bodyOptions[selectedIndex]),
