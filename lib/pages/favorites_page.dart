@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_item.dart';
+import 'package:food_delivery/widgets/adaptive_fav_button.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});
@@ -11,31 +12,49 @@ class FavoritesPage extends StatefulWidget {
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
-  Widget adaptiveFavButton(BuildContext context, VoidCallback onPressed, {required double iconSize}) {
-    if (Platform.isIOS) {
-      return CupertinoButton(
-        onPressed: onPressed,
-        child: Row(
-          children: [
-            Icon(CupertinoIcons.heart_fill, color: Theme.of(context).primaryColor, size: iconSize),
-            const SizedBox(width: 6.0),
-            Text(
-              'Favorited',
-              style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.deepOrange),
-            )
-          ],
-        ),
-      );
-    } else {
-      return TextButton.icon(
-        icon: Icon(Icons.favorite, color: Theme.of(context).primaryColor, size: iconSize),
-        onPressed: onPressed,
-        label: Text(
-          'Favorited',
-          style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Theme.of(context).primaryColor),
-        ),
-      );
-    }
+  Widget buildLandscapeFavButton(List<FoodItem> favoriteFood, int index, {required double iconSize}) {
+    return AdaptiveFavButton(
+        title: 'Favorited',
+        onPressed: () {
+          final targetedItem = favoriteFood[index];
+          int targetedIndex = food.indexOf(targetedItem);
+          setState(() {
+            food[targetedIndex] = food[targetedIndex].copyWith(isFavorite: false);
+            favoriteFood.remove(targetedItem);
+          });
+        },
+        iconSize: iconSize);
+  }
+
+  Widget buildPortraitFavButton(List<FoodItem> favoriteFood, int index, {required double iconSize}) {
+    return InkWell(
+      onTap: () {
+        final targetedItem = favoriteFood[index];
+        int targetedIndex = food.indexOf(targetedItem);
+        setState(() {
+          food[targetedIndex] = food[targetedIndex].copyWith(isFavorite: false);
+          favoriteFood.remove(targetedItem);
+        });
+      },
+      child: Icon(Platform.isAndroid ? Icons.favorite : CupertinoIcons.heart_fill, color: Theme.of(context).primaryColor, size: iconSize),
+    );
+  }
+
+  Widget emptyFavState(bool isLandscape, Size size) {
+    return Center(
+      child: Column(
+        children: [
+          Image.asset(
+            'assets/images/empty_state.png',
+            fit: BoxFit.cover,
+            height: isLandscape ? size.height * 0.45 : size.height * 0.4,
+          ),
+          FittedBox(
+            child: Text('No Favorite Items Found!', style: Theme.of(context).textTheme.headlineSmall),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -44,20 +63,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
     final isLandscape = MediaQuery.orientationOf(context) == Orientation.landscape;
     final favoriteFood = food.where((foodItem) => foodItem.isFavorite == true).toList();
     if (favoriteFood.isEmpty) {
-      return Center(
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/images/empty_state.png',
-              fit: BoxFit.cover,
-              height: isLandscape ? size.height * 0.45 : size.height * 0.4,
-            ),
-            FittedBox(
-              child: Text('No Favorite Items Found!', style: Theme.of(context).textTheme.headlineSmall),
-            ),
-          ],
-        ),
-      );
+      return emptyFavState(isLandscape, size);
     }
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -105,27 +111,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       ],
                     ),
                   ),
-                  if (!isLandscape)
-                    InkWell(
-                      onTap: () {
-                        final targetedItem = favoriteFood[index];
-                        int targetedIndex = food.indexOf(targetedItem);
-                        setState(() {
-                          food[targetedIndex] = food[targetedIndex].copyWith(isFavorite: false);
-                          favoriteFood.remove(targetedItem);
-                        });
-                      },
-                      child: Icon(Platform.isAndroid ? Icons.favorite : CupertinoIcons.heart_fill, color: Theme.of(context).primaryColor, size: constraints.maxWidth * 0.09),
-                    ),
-                  if (isLandscape)
-                    adaptiveFavButton(context, () {
-                      final targetedItem = favoriteFood[index];
-                      int targetedIndex = food.indexOf(targetedItem);
-                      setState(() {
-                        food[targetedIndex] = food[targetedIndex].copyWith(isFavorite: false);
-                        favoriteFood.remove(targetedItem);
-                      });
-                    }, iconSize: constraints.maxWidth * 0.06)
+                  if (!isLandscape) buildPortraitFavButton(favoriteFood, index, iconSize: constraints.maxWidth * 0.09),
+                  if (isLandscape) buildLandscapeFavButton(favoriteFood, index, iconSize: constraints.maxWidth * 0.06),
                 ],
               ),
             ),
