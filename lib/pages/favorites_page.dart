@@ -69,51 +69,56 @@ class _FavoritesPageState extends State<FavoritesPage> {
       padding: const EdgeInsets.all(16.0),
       child: ListView.builder(
         itemCount: favoriteFood.length,
-        itemBuilder: (context, index) => Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.0),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(11.0),
-            child: LayoutBuilder(
-              builder: (context, constraints) => Row(
-                children: [
-                  Image.network(
-                    favoriteFood[index].imgUrl,
-                    //  height: constraints.maxWidth * 0.19,
-                    width: constraints.maxWidth * 0.25,
-                    fit: BoxFit.cover,
-                  ),
-                  SizedBox(
-                    width: constraints.maxWidth * 0.05,
-                  ),
-                  SizedBox(
-                    width: isLandscape ? constraints.maxWidth * 0.48 : constraints.maxWidth * 0.6,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        FittedBox(
-                          child: Text(
-                            favoriteFood[index].name,
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                        ),
-                        SizedBox(height: constraints.maxWidth * 0.02),
-                        FittedBox(
-                          child: Text(
-                            '\$ ${favoriteFood[index].price}',
-                            style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                                  color: Theme.of(context).primaryColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                      ],
+        itemBuilder: (context, index) => InkWell(
+          onTap: () {
+            debugPrint(favoriteFood[index].name);
+          },
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(11.0),
+              child: LayoutBuilder(
+                builder: (context, constraints) => Row(
+                  children: [
+                    Image.network(
+                      favoriteFood[index].imgUrl,
+                      //  height: constraints.maxWidth * 0.19,
+                      width: constraints.maxWidth * 0.25,
+                      fit: BoxFit.cover,
                     ),
-                  ),
-                  if (!isLandscape) buildPortraitFavButton(favoriteFood, index, iconSize: constraints.maxWidth * 0.09),
-                  if (isLandscape) buildLandscapeFavButton(favoriteFood, index, iconSize: constraints.maxWidth * 0.06),
-                ],
+                    SizedBox(
+                      width: constraints.maxWidth * 0.05,
+                    ),
+                    SizedBox(
+                      width: isLandscape ? constraints.maxWidth * 0.48 : constraints.maxWidth * 0.6,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FittedBox(
+                            child: Text(
+                              favoriteFood[index].name,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                          ),
+                          SizedBox(height: constraints.maxWidth * 0.02),
+                          FittedBox(
+                            child: Text(
+                              '\$ ${favoriteFood[index].price}',
+                              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                    color: Theme.of(context).primaryColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (!isLandscape) buildPortraitFavButton(favoriteFood, index, iconSize: constraints.maxWidth * 0.09),
+                    if (isLandscape) buildLandscapeFavButton(favoriteFood, index, iconSize: constraints.maxWidth * 0.06),
+                  ],
+                ),
               ),
             ),
           ),

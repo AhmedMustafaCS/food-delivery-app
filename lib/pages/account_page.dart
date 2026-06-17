@@ -179,12 +179,12 @@ class _AccountPageState extends State<AccountPage> {
                     itemTappedTile(
                       context,
                       title: 'Past Orders',
-                      icon: Platform.isAndroid ? Icons.shopping_cart : CupertinoIcons.shopping_cart,
+                      icon: CupertinoIcons.shopping_cart,
                     ),
                     itemTappedTile(
                       context,
                       title: 'Available Vouchers',
-                      icon: Platform.isAndroid ? Icons.card_giftcard : CupertinoIcons.gift,
+                      icon: CupertinoIcons.gift,
                     ),
                   ],
                 )

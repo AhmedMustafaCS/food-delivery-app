@@ -12,8 +12,27 @@ class BottomNavBarPage extends StatefulWidget {
   State<BottomNavBarPage> createState() => _BottomNavBarPageState();
 }
 
-class _BottomNavBarPageState extends State<BottomNavBarPage> {
+class _BottomNavBarPageState extends State<BottomNavBarPage> /*with WidgetsBindingObserver*/ {
   int selectedIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+
+   // WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+  //  super.didChangeAppLifecycleState(state);
+    debugPrint(state.toString());
+  }
+
+  @override
+  void dispose() {
+  //  WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   void onItemTapped(int newIndex) {
     setState(
       () {
@@ -30,7 +49,7 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> {
 
   @override
   Widget build(BuildContext context) {
-    final PreferredSizeWidget? appBar;
+   final PreferredSizeWidget? appBar;
     final Widget? bottomNavBar;
     if (Platform.isAndroid) {
       appBar = AppBar(
