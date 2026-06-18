@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index) => InkWell(
                   onTap: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => FoodDetailsPage()),
+                      MaterialPageRoute(builder: (context) => FoodDetailsPage(foodItem:food[index])),
                     );
                   },
                   child: FoodGridItem(foodIndex: index)),
