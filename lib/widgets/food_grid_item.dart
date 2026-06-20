@@ -26,7 +26,7 @@ class FoodGridItem extends StatelessWidget {
                     food[foodIndex].imgUrl,
                     height: constraints.maxHeight * 0.57,
                   ),
-                  Align(alignment: Alignment.topRight, child: FavoriteButton(foodIndex: foodIndex, constraints: constraints)),
+                  Align(alignment: Alignment.topRight, child: FavoriteButton(foodIndex: foodIndex, height:constraints.maxHeight*0.17,width: constraints.maxWidth * 0.17)),
                 ],
               ),
               SizedBox(
