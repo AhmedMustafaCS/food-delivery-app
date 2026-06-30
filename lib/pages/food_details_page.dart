@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_item.dart';
-import 'package:food_delivery/widgets/custom_back_button.dart';
-import 'package:food_delivery/widgets/favorite_button.dart';
+import 'package:food_delivery/widgets/food_details/property_item.dart';
+import 'package:food_delivery/widgets/food_details/top_banner.dart';
 
 class FoodDetailsPage extends StatelessWidget {
   final FoodItem foodItem;
@@ -12,48 +12,82 @@ class FoodDetailsPage extends StatelessWidget {
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
       //  appBar: AppBar(),
-        body: Column(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DecoratedBox(
-              decoration:BoxDecoration(
-                color:Colors.grey.shade300,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical:8.0,horizontal:16.0),
-                child: SafeArea(
-                  child: SizedBox(
-                     height: size.height*0.45,
-                     width:size.width,
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment:MainAxisAlignment.spaceBetween,
-                          children:[
-                            CustomBackButton(height: size.height*0.04, width: size.width*0.09),
-                            FavoriteButton(foodIndex: 1, width:size.width*0.09,height:size.height*0.04),
-                            
-                          ],
+            TopBanner(foodItem: foodItem),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0, bottom: 46.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    foodItem.name,
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                          fontWeight: FontWeight.w600,
                         ),
-                       const  Spacer(),
-                        Align(
-                          alignment:Alignment.center,
-                          child: Image.network(
-                            foodItem.imgUrl,
-                            fit: BoxFit.contain,
-                            height: size.height*0.3,
-                           // width:size.width,
-                          
-                           
-                           // width:size.width,
-                          ),
+                  ),
+                  const SizedBox(height: 6.0),
+                  Text('Buffalo Burger', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey)),
+                  const SizedBox(height: 32.0),
+                  IntrinsicHeight(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        PropertyItem(propertyName: 'Size', propertyValue: 'Medium'),
+                        VerticalDivider(
+                          indent: 0,
+                          endIndent: 0,
                         ),
+                        PropertyItem(propertyName: 'Calories', propertyValue: '150 Kcal'),
+                        VerticalDivider(
+                          indent: 0,
+                          endIndent: 0,
+                        ),
+                        PropertyItem(propertyName: 'Cooking', propertyValue: '10-20 Min'),
                       ],
                     ),
                   ),
-                ),
+                  SizedBox(height: 16.0),
+                  Text(
+                    'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: Colors.grey,
+                        ),
+                  ),
+                  const SizedBox(height: 32.0),
+                  Row(
+                    children: [
+                      Text(
+                        '\$ ${foodItem.price}',
+                        style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(width: 46.0),
+                      Expanded(
+                        child: SizedBox(
+                          height: size.height * 0.055,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Theme.of(context).primaryColor,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7.0)),
+                            ),
+                            onPressed: () {},
+                            child: const Text(
+                              'Checkout',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
