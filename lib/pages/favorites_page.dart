@@ -79,6 +79,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
                   return FoodDetailsPage(foodIndex: targetedIndex);
                 },
               ),
+            ).then(
+              (value) => setState(() {}),
             );
           },
           child: Card(
