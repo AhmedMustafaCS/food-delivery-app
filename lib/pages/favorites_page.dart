@@ -72,9 +72,11 @@ class _FavoritesPageState extends State<FavoritesPage> {
         itemCount: favoriteFood.length,
         itemBuilder: (context, index) => InkWell(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => FoodDetailsPage(foodItem:favoriteFood[index]),
-            ));
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => FoodDetailsPage(foodIndex: index),
+              ),
+            );
           },
           child: Card(
             shape: RoundedRectangleBorder(
