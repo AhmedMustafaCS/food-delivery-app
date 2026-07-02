@@ -44,7 +44,7 @@ List<FoodItem> food = [
   FoodItem(
     name: 'Chicken Pizza',
     price: 9,
-    imgUrl: //'https://i.pinimg.com/736x/2d/6b/7d/2d6b7df948d14f41e9a1a48e5b37e9c5.jpg',
+    imgUrl:// 'https://i.pinimg.com/736x/2d/6b/7d/2d6b7df948d14f41e9a1a48e5b37e9c5.jpg',
     'https://i.pinimg.com/1200x/df/d1/18/dfd11899c2f2a267e3f299b1b275afff.jpg',
   ),
   FoodItem(
