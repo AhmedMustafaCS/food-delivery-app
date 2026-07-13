@@ -89,12 +89,12 @@ class _BottomNavBarPageState extends State<BottomNavBarPage> /*with WidgetsBindi
     return Scaffold(
       appBar: appBar,
       body: SafeArea(child: bodyOptions[selectedIndex]),
-      drawer: const Drawer(
-        backgroundColor: Colors.white,
-        child: Center(
-          child: Text('I am in the drawer!'),
-        ),
-      ),
+      // drawer: const Drawer(
+      //   backgroundColor: Colors.white,
+      //   child: Center(
+      //     child: Text('I am in the drawer!'),
+      //   ),
+      // ),
       bottomNavigationBar: bottomNavBar,
     );
   }

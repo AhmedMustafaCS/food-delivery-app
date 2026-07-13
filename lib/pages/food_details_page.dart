@@ -4,8 +4,6 @@ import 'package:food_delivery/widgets/custom_back_button.dart';
 import 'package:food_delivery/widgets/favorite_button.dart';
 import 'package:food_delivery/widgets/food_details/food_item_counter.dart';
 import 'package:food_delivery/widgets/food_details/property_item.dart';
-import 'package:food_delivery/widgets/food_details/top_banner.dart';
-
 class FoodDetailsPage extends StatelessWidget {
   final int foodIndex;
   const FoodDetailsPage({super.key, required this.foodIndex});
@@ -27,6 +25,7 @@ class FoodDetailsPage extends StatelessWidget {
                     leading: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CustomBackButton(
+                        onTap : ()=> Navigator.of(context).pop<String>(food[foodIndex].name),
                         height: size.height * 0.04,
                         width: size.width * 0.09,
                       ),

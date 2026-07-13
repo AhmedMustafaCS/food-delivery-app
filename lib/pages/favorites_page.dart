@@ -72,7 +72,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
         itemCount: favoriteFood.length,
         itemBuilder: (context, index) => InkWell(
           onTap: () {
-            Navigator.of(context).push(
+            Navigator.of(context).push<String>(
               MaterialPageRoute(
                 builder: (context) {
                   int targetedIndex = food.indexOf(favoriteFood[index]);
@@ -80,7 +80,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 },
               ),
             ).then(
-              (value) => setState(() {}),
+              (value) {
+                setState(() {});
+                debugPrint('the returned value from favorites page $value');
+              },
             );
           },
           child: Card(
