@@ -43,10 +43,9 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) => InkWell(
                   onTap: () {
                     Navigator.of(context)
-                        .push<String>(
-                      MaterialPageRoute(
-                        builder: (context) => FoodDetailsPage(foodIndex: index),
-                      ),
+                        .pushNamed(
+                          '/food-details'
+                    
                     )
                         .then(
                       (value) {
