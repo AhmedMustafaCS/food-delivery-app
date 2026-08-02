@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_item.dart';
 import 'package:food_delivery/pages/food_details_page.dart';
+import 'package:food_delivery/ui_models/food_details_args.dart';
 import 'package:food_delivery/widgets/food_grid_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -41,20 +42,16 @@ class _HomePageState extends State<HomePage> {
                 mainAxisExtent: isLandScape ? textScaler.clamp(minScaleFactor: 0.96, maxScaleFactor: 1.1).scale(size.height * 0.6) : textScaler.clamp(minScaleFactor: 0.96, maxScaleFactor: 1.1).scale(size.height * 0.2),
               ),
               itemBuilder: (context, index) => InkWell(
-                  onTap: () {
-                    Navigator.of(context)
-                        .pushNamed(
-                          '/food-details'
-                    
-                    )
-                        .then(
-                      (value) {
-                        setState(() {});
-                        debugPrint('The value returned in home $value');
-                      },
-                    );
-                  },
-                  child: FoodGridItem(foodIndex: index),),
+                onTap: () {
+                  Navigator.of(context).pushNamed(FoodDetailsPage.routeName, arguments: FoodDetailsArgs(foodIndex: index)).then(
+                    (value) {
+                      setState(() {});
+                      debugPrint('The value returned in home $value');
+                    },
+                  );
+                },
+                child: FoodGridItem(foodIndex: index),
+              ),
             ),
           ],
         ),
