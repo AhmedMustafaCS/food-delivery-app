@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/utilities/app_assets.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -69,7 +70,7 @@ class _AccountPageState extends State<AccountPage> {
           shape: BoxShape.circle,
           image: DecorationImage(
             image: AssetImage(
-              'assets/images/ahmed.jpg',
+              AppAssets.profilePhoto,
             ),
             fit: BoxFit.cover,
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_item.dart';
 import 'package:food_delivery/pages/food_details_page.dart';
 import 'package:food_delivery/ui_models/food_details_args.dart';
+import 'package:food_delivery/utilities/app_assets.dart';
 import 'package:food_delivery/widgets/food_grid_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage> {
             ClipRRect(
               borderRadius: BorderRadius.circular(24),
               child: Image.asset(
-                'assets/images/classic_burger.jpg',
+                AppAssets.burgerBanner,
                 height: isLandScape ? size.height * 0.65 : size.height * 0.23,
                 fit: BoxFit.cover,
               ),

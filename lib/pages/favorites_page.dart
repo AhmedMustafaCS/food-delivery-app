@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/models/food_item.dart';
 import 'package:food_delivery/pages/food_details_page.dart';
 import 'package:food_delivery/ui_models/food_details_args.dart';
+import 'package:food_delivery/utilities/app_assets.dart';
 import 'package:food_delivery/widgets/adaptive_fav_button.dart';
 
 class FavoritesPage extends StatefulWidget {
@@ -47,7 +48,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
       child: Column(
         children: [
           Image.asset(
-            'assets/images/empty_state.png',
+            AppAssets.emptyState,
             fit: BoxFit.cover,
             height: isLandscape ? size.height * 0.45 : size.height * 0.4,
           ),
