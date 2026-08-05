@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/models/category_item.dart';
 import 'package:food_delivery/models/food_item.dart';
 import 'package:food_delivery/pages/food_details_page.dart';
 import 'package:food_delivery/ui_models/food_details_args.dart';
@@ -31,6 +32,37 @@ class _HomePageState extends State<HomePage> {
                 fit: BoxFit.cover,
               ),
             ),
+            SizedBox(height: size.height * 0.03),
+            SizedBox(
+              height:size.height*0.13,
+              child: ListView.builder(
+                itemCount:categories.length,
+                scrollDirection:Axis.horizontal,
+                itemBuilder:(context,index)=>Padding(
+                  padding: const EdgeInsetsDirectional.only(end:16.0),
+                  child: Container(
+                    width:size.width*0.2,
+                  //  height: size.height*0.07,
+                    decoration:BoxDecoration(
+                      color:Colors.white,
+                      borderRadius: BorderRadius.circular(16.0)
+                    ),
+                    child:Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Image.asset(categories[index].imgPath),
+                          const SizedBox(height:8.0),
+                          Text(categories[index].title,style:Theme.of(context).textTheme.titleSmall),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              
+              ),
+            ),
+            
             SizedBox(height: size.height * 0.03),
             GridView.builder(
               shrinkWrap: true,
