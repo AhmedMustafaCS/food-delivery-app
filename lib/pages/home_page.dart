@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                       setState(() {
                         categoryChosenId = categories[index].id;
                       });
-                      filteredFood = filteredFood.where((item) => item.categoryId == categoryChosenId).toList();
+                      filteredFood = food.where((item) => item.categoryId == categoryChosenId).toList();
                     },
                     child: Container(
                       width: size.width * 0.2,
