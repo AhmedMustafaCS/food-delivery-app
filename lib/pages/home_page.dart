@@ -94,7 +94,13 @@ class _HomePageState extends State<HomePage> {
               ),
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  Navigator.of(context).pushNamed(FoodDetailsPage.routeName, arguments: FoodDetailsArgs(foodIndex: index)).then(
+                  final targetedIndex = food.indexOf(filteredFood[index]);
+                  Navigator.of(context)
+                      .pushNamed(
+                    FoodDetailsPage.routeName,
+                    arguments: FoodDetailsArgs(foodIndex: targetedIndex),
+                  )
+                      .then(
                     (value) {
                       setState(() {});
                       debugPrint('The value returned in home $value');
