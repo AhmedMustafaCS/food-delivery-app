@@ -23,7 +23,7 @@ class FoodItem {
   }
 }
 
-List<FoodItem> food = const [
+List<FoodItem> food = [
   FoodItem(
     name: 'Beef Burger',
     imgUrl: 'https://www.freepnglogos.com/uploads/burger-png/download-hamburger-burger-png-image-png-image-pngimg-15.png',
