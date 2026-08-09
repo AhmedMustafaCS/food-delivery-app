@@ -104,6 +104,8 @@ class _HomePageState extends State<HomePage> {
                       .then(
                     (value) {
                       setState(() {});
+                      filteredFood = food;
+                      categoryChosenId = null;
                       debugPrint('The value returned in home $value');
                     },
                   );
