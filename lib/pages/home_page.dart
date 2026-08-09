@@ -94,7 +94,8 @@ class _HomePageState extends State<HomePage> {
               ),
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  final targetedIndex = food.indexOf(filteredFood[index]);
+                  final targetedFoodItem = food.firstWhere((item) => item.id == filteredFood[index].id);
+                  final targetedIndex = food.indexOf(targetedFoodItem);
                   Navigator.of(context)
                       .pushNamed(
                     FoodDetailsPage.routeName,
