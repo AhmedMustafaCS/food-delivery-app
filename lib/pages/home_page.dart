@@ -79,9 +79,11 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Image.asset(categories[index].imgPath),
                             const SizedBox(height: 8.0),
-                            Text(
-                              categories[index].title,
-                              style: Theme.of(context).textTheme.titleSmall!.copyWith(color: categoryChosenId == categories[index].id ? Colors.white : null),
+                            FittedBox(
+                              child: Text(
+                                categories[index].title,
+                                style: Theme.of(context).textTheme.titleMedium!.copyWith(color: categoryChosenId == categories[index].id ? Colors.white : null),
+                              ),
                             ),
                           ],
                         ),
