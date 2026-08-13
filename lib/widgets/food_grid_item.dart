@@ -14,7 +14,8 @@ class FoodGridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
-    final targetedIndex = food.indexOf(filteredFood[foodIndex]);
+    final targetedFoodItem = food.firstWhere((item) => item.id == filteredFood[foodIndex].id);
+    final targetedIndex = food.indexOf(targetedFoodItem);
 
     return Container(
       decoration: BoxDecoration(
